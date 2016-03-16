@@ -1,0 +1,66 @@
+<template name="creditCardForm">
+    <div class="row credit-card">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+            <form ref="credit-card-form" class="credit-card__form">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Payment Details
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group {{#if error.number}}has-error{{/if}}">
+                            <label for="form-card-number" class="text-uppercase">Card number</label>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" id="form-card-number" ref="number"
+                                       placeholder="Valid card number" value="{{form.number}}" required autofocus />
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                            </div>
+                            {{#if error.number}}
+                                <span class="help-block">{{error.number}}</span>
+                            {{/if}}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                    <label for="form-card-expiry-month" class="text-uppercase">Expiry date</label>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-lg-6">
+                                            <input type="number" class="form-control input-lg" id="form-card-expiry-month" ref="month"
+                                                   placeholder="MM" min="1" max="12" value="{{form.month}}" required />
+                                        </div>
+                                        <div class="col-xs-6 col-lg-6">
+                                            <input type="number" class="form-control input-lg" id="form-card-expiry-year" ref="year"
+                                                   min="0" max="99" placeholder="YY" value="{{form.year}}" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group {{#if error.cv}}has-error{{/if}}">
+                                    <label for="form-card-cv" class="text-uppercase">CV code</label>
+                                    <input type="password" class="form-control input-lg" id="form-card-cv" ref="cv"
+                                           placeholder="CV" required value="{{form.cv}}" />
+                                    {{#if error.cv}}
+                                        <span class="help-block">{{error.cv}}</span>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group credit-card__form-group--last">
+                            <label for="form-card-number" class="text-uppercase">Name on card</label>
+                            <input type="text" class="form-control input-lg" id="form-card-name" ref="name"
+                                   placeholder="Enter name on card" value="{{form.name}}" required />
+                        </div>
+
+                    </div>
+                </div>
+                <button class="btn btn-success btn-lg btn-block {{#if invalid}}disabled{{/if}}" type="submit">Pay</button>
+            </form>
+        </div>
+    </div>
+</template>
